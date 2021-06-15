@@ -1,5 +1,5 @@
 import "./App.css";
-import Cars from './Cars';
+import Cars from './Cars/Cars';
 import React, { Component } from 'react'
 
 export default class App extends Component {
@@ -9,32 +9,61 @@ export default class App extends Component {
         {name: 'Bmw', year: 2010, color: 'green'},
         ],
         pageTitle: 'Cars',
-        change: false
+        change: false,
+        display : 'inline-block'
     }
-    clicker = (newTitle) => {
-        this.state.change ? this.setState({
-            pageTitle : newTitle, 
-            change: false
-        }):
+    
+    changeName(value, i){
+        const car = this.state.cars[i]
+        car.name = value;
+        const cars = [...this.state.cars]
+        cars[i] = car;
+        this.setState({cars})
+    }
+
+
+    delElement =(i) => {
+        const arr = [...this.state.cars];
+        
+        arr.splice(i, 1)
+        this.setState({cars: arr})
+
+        if(arr.length <= 0){
+            this.setState({
+                display: 'none'
+            })
+        }
+    }
+
+    showCars =(e) => {
         this.setState({
-            pageTitle : newTitle, 
-            change : true
+            change: !this.state.change
         })
+        if(this.state.change)e.target.textContent = 'Show cars'
+        else e.target.textContent = 'Hide cars'
     }
-    changeInput = (e) => {
-        this.setState({
-            pageTitle: e.target.value
-        })
-    }
+
     render() {
-        const cars = this.state.cars
+        let cars = null;
+        if(this.state.change){
+            cars = this.state.cars.map((el, i) => {
+                return <Cars 
+                changeName={event => this.changeName(event.target.value, i)}
+                delElement={() => this.delElement(i)} 
+                key={el.name} 
+                name={el.name} 
+                year={el.year} 
+                color={el.color}/>
+            })
+        }
+
         return (
             <div className = 'App'>
                 <h1 style={{color: 'blue'}}>{this.state.pageTitle}</h1>
-                <input type="text" onChange={this.changeInput} />
-                <Cars name={cars[0].name} year={cars[0].year} color={cars[0].color} changers = {this.clicker.bind(this, cars[0].name)}/>
-                <Cars name={cars[1].name} year={cars[1].year} color={cars[1].color} changers = {this.clicker.bind(this, cars[1].name)}/>
-                <Cars name={cars[2].name} year={cars[2].year} color={cars[2].color} changers = {this.clicker.bind(this, cars[2].name)}/>
+                <button style={{display: this.state.display}}onClick={this.showCars}>Show cars</button>
+                <div>
+                    {cars}
+                </div>
             </div>
         )
     }
