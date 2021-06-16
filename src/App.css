@@ -1,3 +1,22 @@
 .App{
   text-align: center;
 }
+.list-cars{
+  display: flex;
+}
+.table-list{
+  font-size: 20px;
+  width: 150px;
+  text-align: center;
+  margin: 0 auto;
+  transition-delay: 0s ;
+}
+.table-list:hover{
+  transition: .5s linear;
+  cursor: pointer;
+  background: aquamarine;
+}
+.table-list:active{
+  cursor: pointer;
+  background: rgb(47, 0, 255);
+}
