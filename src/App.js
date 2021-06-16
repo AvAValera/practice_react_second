@@ -2,7 +2,7 @@ import "./App.css";
 import Cars from './Cars/Cars';
 import React, { Component } from 'react'
 
-export default class App extends Component {
+class App extends Component {
     state = {cars: [
         {name: 'Ford', year: 2016, color: 'red'},
         {name: 'Opel', year: 2021, color: 'blue'},
@@ -13,7 +13,7 @@ export default class App extends Component {
         display : 'inline-block'
     }
     
-    changeName(value, i){
+    onChangeName(value, i){
         const car = this.state.cars[i]
         car.name = value;
         const cars = [...this.state.cars]
@@ -48,9 +48,9 @@ export default class App extends Component {
         if(this.state.change){
             cars = this.state.cars.map((el, i) => {
                 return <Cars 
-                changeName={event => this.changeName(event.target.value, i)}
+                onChangeName={event => this.onChangeName(event.target.value, i)}
                 delElement={() => this.delElement(i)} 
-                key={el.name} 
+                key={i} 
                 name={el.name} 
                 year={el.year} 
                 color={el.color}/>
@@ -69,3 +69,4 @@ export default class App extends Component {
     }
 }
 
+export default App;

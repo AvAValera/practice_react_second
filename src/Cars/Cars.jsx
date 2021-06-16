@@ -6,7 +6,7 @@ export default function Cars(props) {
             <h1>Car: {props.name}</h1>
             <p>Year: {props.year}</p>
             <p>Color: {props.color}</p>
-            <input onChange={props.changeName} defaultValue={props.name} />
+            <input onChange={props.onChangeName} value={props.name} />
             <button onClick={props.delElement}>Delete</button>
         </div>
     )
