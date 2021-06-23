@@ -1,0 +1,12 @@
+.black{
+    color: black;
+}
+.green{
+    color: green;
+}
+.red{
+    color: red;
+}
+.counter{
+    transition: all 1s linear;
+}

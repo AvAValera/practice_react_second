@@ -1,13 +1,19 @@
 import React from 'react'
-
+import './Counter.css'
 const Counter = (props) => {
+    let color = ["black", "counter"]
     
+    if(props.counter > 0){
+        color.push("green")
+    }
+    else color.push("red")
+
     return (
-        <div>
-            <h2>Counter: <span className="counter-num">{props.counter}</span></h2>
+        <React.Fragment>
+            <h2>Counter: <span className={color.join(" ")}>{props.counter}</span></h2>
             <button onClick={props.counterMinus}>-</button>
             <button onClick={props.counterPlus}>+</button>
-        </div>
+        </React.Fragment>
     )
 }
 

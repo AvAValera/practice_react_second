@@ -72,7 +72,7 @@ class App extends Component {
                 color={el.color}/>
             })
         }
-
+        
         return (
             <div className = 'App'>
                 <h1 style={{color: 'blue'}}>{this.state.pageTitle}</h1>
