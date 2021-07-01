@@ -3,21 +3,28 @@ import Cars from './Cars/Cars';
 import Counter from './Counter/Counter'
 import Practice from './Practice/Practice'
 import Timer from './Practice/Timer'
+import Form from './Form/Form'
 import React, { Component } from 'react'
 
 class App extends Component {
-    state = {cars: [
-        {name: 'Ford', year: 2016, color: 'red'},
-        {name: 'Opel', year: 2021, color: 'blue'},
-        {name: 'Bmw', year: 2010, color: 'green'},
-        {name: 'Tesla', year: 2019, color: 'fuchsia'},
-        ],
-        pageTitle: 'Cars',
-        change: false,
-        display : 'inline-block',
-        columns: 'column', 
-        counter: 0
+    constructor(props) {
+        super(props)
+        this.state = {
+            cars: [
+                {name: 'Ford', year: 2016, color: 'red'},
+                {name: 'Opel', year: 2021, color: 'blue'},
+                {name: 'Bmw', year: 2010, color: 'green'},
+                {name: 'Tesla', year: 2019, color: 'fuchsia'},
+                ],
+            pageTitle: 'Cars',
+            change: false,
+            display : 'inline-block',
+            columns: 'column', 
+            counter: 0
+        }
     }
+    
+    
     
     onChangeName(value, i){
         const car = this.state.cars[i]
@@ -100,8 +107,11 @@ class App extends Component {
                     {cars}
                 </div>
                 <Counter counter={this.state.counter} counterPlus={this.counterPlus} counterMinus={this.counterMinus} />
-                <Practice />
-                <Timer />
+                <div className='Practice-block'>
+                    <Practice />
+                    <Timer />
+                </div>
+                <Form />
             </div>
         )
     }

@@ -20,3 +20,7 @@
   cursor: pointer;
   background: rgb(47, 0, 255);
 }
+.Practice-block{
+  display: flex;
+  justify-content: center;
+}

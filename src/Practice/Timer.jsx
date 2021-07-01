@@ -8,8 +8,15 @@ export default class Timer extends Component {
         messBtn: "Start"
     };
     componentDidMount(){
-        this.setState({timer: parseInt(localStorage.getItem('timer'))})
-        
+        if(isNaN(parseInt(localStorage.getItem('timer')))){
+            this.setState({timer: this.state.timer})
+        }
+        else{
+            this.setState({timer: parseInt(localStorage.getItem('timer'))})
+        }
+    }
+    componentWillUnmount(){
+        clearInterval(this.timerr)
     }
     startTime = () => {
         this.setState({start: false})
@@ -33,6 +40,7 @@ export default class Timer extends Component {
         clearInterval(this.timerr)
         this.setState({
             timer: 0,
+            start: true,
             messBtn: "Start"
         })
     }
