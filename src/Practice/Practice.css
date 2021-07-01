@@ -1,0 +1,15 @@
+.list{
+    list-style: none;
+}
+.list li{
+    background: rgba(0, 0, 0, 0.206);
+    width: 100px;
+    margin: 10px auto;
+    border-radius: 20px;
+
+}
+.list li:hover{
+    cursor: pointer;
+    background-color: brown;
+    transition: background 1s linear;
+}

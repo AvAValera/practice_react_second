@@ -6,6 +6,9 @@ const Counter = (props) => {
     if(props.counter > 0){
         color.push("green")
     }
+    else if(props.counter === 0){
+        color.push("black")
+    }
     else color.push("red")
 
     return (

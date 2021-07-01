@@ -1,6 +1,7 @@
 import "./App.css";
 import Cars from './Cars/Cars';
 import Counter from './Counter/Counter'
+import Practice from './Practice/Practice'
 import React, { Component } from 'react'
 
 class App extends Component {
@@ -8,6 +9,7 @@ class App extends Component {
         {name: 'Ford', year: 2016, color: 'red'},
         {name: 'Opel', year: 2021, color: 'blue'},
         {name: 'Bmw', year: 2010, color: 'green'},
+        {name: 'Tesla', year: 2019, color: 'fuchsia'},
         ],
         pageTitle: 'Cars',
         change: false,
@@ -58,6 +60,17 @@ class App extends Component {
     counterMinus = () => {
         this.setState({counter : this.state.counter - 1})
     }
+    changeHeader = (event, i) => {
+        const car = this.state.cars[i]
+        this.setState({
+            pageTitle: car.name
+        })
+    }
+    returnHeader = () => {
+        this.setState({
+            pageTitle: 'Cars'
+        })
+    }
 
     render() {
         let cars = null;
@@ -66,6 +79,8 @@ class App extends Component {
                 return <Cars 
                 onChangeName={event => this.onChangeName(event.target.value, i)}
                 delElement={() => this.delElement(i)} 
+                changeHeader={event => this.changeHeader(event, i)}
+                returnHeader={this.returnHeader}
                 key={i} 
                 name={el.name} 
                 year={el.year} 
@@ -84,6 +99,7 @@ class App extends Component {
                     {cars}
                 </div>
                 <Counter counter={this.state.counter} counterPlus={this.counterPlus} counterMinus={this.counterMinus} />
+                <Practice />
             </div>
         )
     }
