@@ -13,3 +13,15 @@
     background-color: brown;
     transition: background 1s linear;
 }
+.Timer{
+    margin-top: 20px;
+    padding: 20px;
+    border: 2px solid black;
+    display: inline-block;
+    width: 200px;
+    background-color: rgba(0, 0, 0, 0.267);
+}
+.Timer .Time{
+    font-size: 40px;
+    font-weight: bold;
+}

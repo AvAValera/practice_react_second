@@ -2,6 +2,7 @@ import "./App.css";
 import Cars from './Cars/Cars';
 import Counter from './Counter/Counter'
 import Practice from './Practice/Practice'
+import Timer from './Practice/Timer'
 import React, { Component } from 'react'
 
 class App extends Component {
@@ -100,6 +101,7 @@ class App extends Component {
                 </div>
                 <Counter counter={this.state.counter} counterPlus={this.counterPlus} counterMinus={this.counterMinus} />
                 <Practice />
+                <Timer />
             </div>
         )
     }
