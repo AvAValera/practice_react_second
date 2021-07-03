@@ -20,7 +20,6 @@ class App extends Component {
             change: false,
             display : 'inline-block',
             columns: 'column', 
-            counter: 0
         }
     }
     
@@ -62,12 +61,6 @@ class App extends Component {
         }
         else this.setState({columns : 'column'})
     }
-    counterPlus = () => {
-        this.setState({counter : this.state.counter + 1})
-    }
-    counterMinus = () => {
-        this.setState({counter : this.state.counter - 1})
-    }
     changeHeader = (event, i) => {
         const car = this.state.cars[i]
         this.setState({
@@ -106,7 +99,7 @@ class App extends Component {
                 <div className='list-cars' style={{flexDirection: this.state.columns}}>
                     {cars}
                 </div>
-                <Counter counter={this.state.counter} counterPlus={this.counterPlus} counterMinus={this.counterMinus} />
+                <Counter />
                 <div className='Practice-block'>
                     <Practice />
                     <Timer />

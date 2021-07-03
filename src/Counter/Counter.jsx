@@ -1,21 +1,23 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './Counter.css'
 const Counter = (props) => {
+    const [counter, setCounter] = useState(0);
+    const [count, setCount] = useState('Counter:');
     let color = ["black", "counter"]
     
-    if(props.counter > 0){
+    if(counter > 0){
         color.push("green")
     }
-    else if(props.counter === 0){
+    else if(counter === 0){
         color.push("black")
     }
     else color.push("red")
 
     return (
         <React.Fragment>
-            <h2>Counter: <span className={color.join(" ")}>{props.counter}</span></h2>
-            <button onClick={props.counterMinus}>-</button>
-            <button onClick={props.counterPlus}>+</button>
+            <h2 onClick={() => setCount('Hello')}>{count} <span className={color.join(" ")}>{counter}</span></h2>
+            <button onClick={() => setCounter(counter - 1)}>-</button>
+            <button onClick={() => setCounter(counter + 1)} >+</button>
         </React.Fragment>
     )
 }

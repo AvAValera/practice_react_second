@@ -1,57 +1,55 @@
-import React, { Component } from 'react'
 import './Practice.css'
+import React,{useState, useEffect} from 'react'
 
-export default class Timer extends Component {
-    state = {
-        timer: 0,
-        start: true,
-        messBtn: "Start"
-    };
-    componentDidMount(){
+export default function Timer() {
+    
+    const[timer, setTimer] = useState(0);
+    const[start, setStart] = useState(true);
+    const[messBtn, setMessBtn] = useState('Start');
+    
+    const timerr = setInterval(() =>{
+        setTimer(timer + 1)
+        localStorage.setItem('timer', timer)
+    },1000)
+    
+    function startTime() {
+        setStart(false)
+        if(start){
+            () => timerr
+            setMessBtn('Stop')
+        }
+        else{
+            setStart(true)
+            setMessBtn('Start')
+            clearInterval(timerr)
+        }
+
+    }
+    function resetTime() {
+        clearInterval(timerr)
+        
+        setTimer(0)
+        setStart(true)
+        setMessBtn('Start')
+    }
+
+    useEffect(()=>{
         if(isNaN(parseInt(localStorage.getItem('timer')))){
-            this.setState({timer: this.state.timer})
+            setTimer(timer)
         }
         else{
-            this.setState({timer: parseInt(localStorage.getItem('timer'))})
+            setTimer(parseInt(localStorage.getItem('timer')))
         }
-    }
-    componentWillUnmount(){
-        clearInterval(this.timerr)
-    }
-    startTime = () => {
-        this.setState({start: false})
-        if(this.state.start){
-            this.timerr = setInterval(() =>{
-                this.setState({timer: this.state.timer + 1})
-                localStorage.setItem('timer', this.state.timer)
-            },1000)
-            this.setState({messBtn : "Stop"})
-        }
-        else{
-            this.setState({
-                start: true,
-                messBtn : "Start"
-            })
-            clearInterval(this.timerr)
-        }
+        return clearInterval(timerr);
+    },[timer])
 
-    }
-    resetTime = () => {
-        clearInterval(this.timerr)
-        this.setState({
-            timer: 0,
-            start: true,
-            messBtn: "Start"
-        })
-    }
-
-    render() {
-        return (
+    return (
+        <div>
             <div className="Timer">
-                <span className="Time">{this.state.timer}</span>
-                <button onClick={this.startTime}>{this.state.messBtn}</button>
-                <button onClick={this.resetTime}>Reset</button>
+                <span className="Time">{timer}</span>
+                <button onClick={startTime()}>{messBtn}</button>
+                <button onClick={resetTime()}>Reset</button>
             </div>
-        )
-    }
+        </div>
+    )
 }
