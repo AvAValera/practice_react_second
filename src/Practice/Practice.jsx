@@ -17,7 +17,7 @@ export default class Practice extends Component {
             this.setState({list: listEl})
             input.value = ''
         }
-
+        else alert('Should not be empty')
     }
     delElem = (i) => {
         const listEle = [...this.state.list]
@@ -30,7 +30,7 @@ export default class Practice extends Component {
                 <h2>List</h2>
                 <ul className="list">
                     {this.state.list.map((el, i)=> {
-                        return <li key={i} onClick={() => this.delElem(i)}>{`${i+1}. ${el}`}</li>
+                        return <li key={i} onClick={() => this.delElem()}>{`${i+1}. ${el}`}</li>
                     })}
                 </ul>
                 <input id='inn' type="text" />

@@ -4,6 +4,7 @@ import Counter from './Counter/Counter'
 import Practice from './Practice/Practice'
 import Timer from './Practice/Timer'
 import Form from './Form/Form'
+import Gallery from './Api/Gallery'
 import React, { Component } from 'react'
 
 class App extends Component {
@@ -105,6 +106,7 @@ class App extends Component {
                     <Timer />
                 </div>
                 <Form />
+                <Gallery />
             </div>
         )
     }
