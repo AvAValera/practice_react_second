@@ -37,7 +37,6 @@ export default class Form extends Component {
     };
     mouseEntr = (e) => {
         this.checkRef.current.focus();
-        console.log(this.checkRef)
     }
 
     render() {
