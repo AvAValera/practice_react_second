@@ -1,55 +1,51 @@
 import './Practice.css'
 import React,{useState, useEffect, useRef} from 'react'
 
+function getData(){
+    const data = localStorage.getItem('timer')
+    return data ? +data : 0
+}
 export default function Timer() {
     
-    const[timer, setTimer] = useState(0);
-    const[start, setStart] = useState(true);
+    const[timer, setTimer] = useState(getData());
+    const[start, setStart] = useState(false);
     const[messBtn, setMessBtn] = useState('Start');
     const timerRef = useRef(null);
     
     const startTime = () => {
+        setStart(true)
+        setMessBtn('Stop')
+    }
+    const stopTime = () => {
         setStart(false)
-        if(start){
-            timerRef.current = setInterval(() =>{
-                setTimer((prev) => prev + 1)
-                localStorage.setItem('timer', timer)
-            },1000)
-            setMessBtn('Stop')
-        }
-        else{
-            setStart(true)
-            setMessBtn('Start')
-            clearInterval(timerRef.current)
-        }
-
+        setMessBtn('Start')
+        clearInterval(timerRef.current)
     }
     const resetTime = () => {
         clearInterval(timerRef.current)
         
         setTimer(0)
-        setStart(true)
+        setStart(false)
         setMessBtn('Start')
     }
-
-    useEffect(()=>{
-        if(isNaN(parseInt(localStorage.getItem('timer')))){
-            setTimer(timer)
-        }
-        else{
-            setTimer(parseInt(localStorage.getItem('timer')))
-        }
-        return clearInterval(timerRef.current);
-    },[])
     useEffect(()=>{
         localStorage.setItem('timer', timer)
     },[timer])
+
+    useEffect(()=>{
+        if(start){
+            timerRef.current = setInterval(() =>{
+                setTimer((prev) => prev + 1)
+            },1000)
+        }
+        return () => clearInterval(timerRef.current)
+    },[start])
 
     return (
         <div>
             <div className="Timer">
                 <span className="Time">{timer}</span>
-                <button onClick={startTime}>{messBtn}</button>
+                <button onClick={!start ? startTime : stopTime}>{messBtn}</button>
                 <button onClick={resetTime}>Reset</button>
             </div>
         </div>
