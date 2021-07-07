@@ -1,15 +1,19 @@
 .Gallery{
-    
     display: grid;
-    grid-template-columns: repeat(5, 300px);
+    grid-template-columns: repeat(5, 200px);
     justify-content:center;
+    grid-gap: 10px;
+}
+.Gallery-container{
+    position: relative;
 }
 .Item{
     position: relative;
 }
 .Item img{
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
 }
 .author{
     position: absolute;
@@ -24,8 +28,10 @@
 }
 .Logo{
     display: block;
+    position: absolute;
     width: 200px;
     animation: anim 5s linear infinite;
+    left: 45%;
 }
 @keyframes anim {
     0%{transform: rotate(0deg);}

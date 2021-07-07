@@ -9,25 +9,26 @@ export default function Gallery() {
     const [dispItem, getDisplayItem] = useState('none')
     
     useEffect(()=>{
-        fetch('https://picsum.photos/v2/list?page=2&limit=10')
+        fetch('https://picsum.photos/v2/list?page=2&limit=5')
         .then(data => data.json())
         .then(data => getArrData(data))
     },[])
     function getContent(){
         setTimeout(()=>{
+            getDisplayItem('grid')
             getDisplay('none')
         },2000)
         return <img style={{display: disp}} className="Logo" src={logo} alt="img" />
     }
     
     return (
-        <div>
-            <div className="Gallery">
+        <div className="Gallery-container">
+            <div style={{display: dispItem}} className="Gallery">
                 {arrData.map((el, i) => {
-                    return <Item style={{display: dispItem}} key={i} image={el} />
+                    return <Item key={el.author} image={el} />
                 })}
-                {getContent()}
             </div>
+                {getContent()}
         </div>
     )
 }

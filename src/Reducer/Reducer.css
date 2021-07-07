@@ -1,0 +1,9 @@
+.Color{
+    display: inline-block;
+    width: 100px;
+    height: 20px;
+    vertical-align: top;
+}
+.Panel{
+    margin-bottom: 10px;
+}
