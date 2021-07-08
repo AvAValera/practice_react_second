@@ -1,4 +1,5 @@
 import './Practice.css'
+import TimerReduce from './TimerReduce'
 import React,{useState, useEffect, useRef} from 'react'
 
 function getData(){
@@ -48,6 +49,7 @@ export default function Timer() {
                 <button onClick={!start ? startTime : stopTime}>{messBtn}</button>
                 <button onClick={resetTime}>Reset</button>
             </div>
+            <TimerReduce />
         </div>
     )
 }
