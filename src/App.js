@@ -6,6 +6,7 @@ import Timer from './Practice/Timer'
 import Form from './Form/Form'
 import Gallery from './Api/Gallery'
 import Reducer from './Reducer/Reducer'
+import Context from "./Context/Context";
 import React, { Component } from 'react'
 
 class App extends Component {
@@ -107,6 +108,7 @@ class App extends Component {
                     <Timer />
                 </div>
                 <Reducer />
+                <Context />
                 <Form />
                 <Gallery />
             </div>

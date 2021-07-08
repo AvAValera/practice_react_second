@@ -4,15 +4,17 @@ function reducer (state, {type}){
         case 'START_TIMER':
             return{
                 ...state,
-                isTimer: !state.isTimer,
-                messBtn: (state.isTimer) ? 'Stop' : 'Start'
+                isTimer: true
             }
-        
+        case 'STOP_TIMER':
+            return{
+                ...state,
+                isTimer: false
+            }
         case 'RESET_TIMER':
             return{
                 count: 0,
-                isTimer: false,
-                messBtn: 'Start'
+                isTimer: false
             }
         case 'COUNTING':
             return{
@@ -24,15 +26,18 @@ function reducer (state, {type}){
     }
 }
 export default function TimerReduce() {
-    const [data, dispatch] = useReducer(reducer,{count: 0, isTimer: false, messBtn: 'Start'})
-    let timer = null; 
+    const [data, dispatch] = useReducer(reducer,{count: 0, isTimer: false})
     useEffect(()=>{
+        let timer = null; 
         if(data.isTimer){
             timer = setInterval(()=>{
                 dispatch({type: 'COUNTING'})
             },1000)
         }
-        else clearInterval(timer)
+        return () =>{
+            clearInterval(timer)
+            timer = null
+        }
     },[data.isTimer])
     return (
         <div>
@@ -40,7 +45,8 @@ export default function TimerReduce() {
             <div>
                 <span>{data.count}</span>
                 <br />
-                <button onClick={() => dispatch({type : 'START_TIMER'})}>{data.messBtn}</button>
+                {(data.isTimer) ? <button onClick={() => dispatch({type : 'STOP_TIMER'})}>Stop</button> :
+                <button onClick={() => dispatch({type : 'START_TIMER'})}>Start</button>}
                 <button onClick={() => dispatch({type : 'RESET_TIMER'})}>Reset</button>
             </div>
         </div>
